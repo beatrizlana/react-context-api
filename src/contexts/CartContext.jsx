@@ -1,13 +1,18 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-export const CartContext = React.createContext();
+export const CartContext = React.createContext()
 
-const CartProvider = ({children}) => {
-  return (
-    <CartContext.Provider>
-      {children}
-    </CartContext.Provider>
-  )
+export const CartProvider = ({ children }) => {
+	const [carrinho, setCarrinho] = React.useState([])
+  
+	return (
+		<CartContext.Provider value={{ carrinho, setCarrinho }}>
+			{children}
+		</CartContext.Provider>
+	)
 }
 
-export default CartProvider
+CartProvider.propTypes = {
+	children: PropTypes.node.isRequired,
+}
